@@ -1,0 +1,43 @@
+extends pug/base
+
+append vars
+	-
+		meta.charset = 'utf-8'
+		meta.description = 'Тестовое задание'
+		title = 'Тестовое задание'
+		meta.viewport = 'width=device-width, initial-scale=1'
+
+block content
+	//- ...
+	main
+		section.section.section--gray
+			.section__inner
+				article.article.article--bg-gray.article_after-img 
+					.article__inner
+						.article__left
+							.avatar
+								img(src="./images/avatar.png" alt="Photo")
+						.article__right
+							form.user-info(action="/" method="get")
+								+field-text({
+									attrs: {
+									placeholder: "Имя"
+								}
+								})
+								+field-text({
+									attrs: {
+									placeholder: "Дата рождения"}
+								})
+								+field-text({
+									attrs: {
+									placeholder: "Город"}
+								})
+								+field-text({
+									attrs: {
+										placeholder: 'Контактные данные'
+									}
+								})
+				article.article.article--bg-gray 
+					.article__inner
+						h2.title Навыки
+						
