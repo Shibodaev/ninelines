@@ -12,16 +12,18 @@ block content
 	main
 		section.section.section--gray
 			.section__inner
-				article.article.article--bg-gray.article_after-img 
-					.article__inner
-						.article__left
+				article.article-info.article-info--bg-gray.article-info--after-img 
+					.article-info__inner
+						.article-info__avatar-wrapper
 							.avatar
 								img(src="./images/avatar.png" alt="Photo")
-						.article__right
+						.article-info__form-wrapper
 							form.user-info(action="/" method="get")
 								+field-text({
 									attrs: {
-									placeholder: "Имя"
+									placeholder: "Имя",
+									pattern: '[А-Яа-яЁё ]+'
+
 								}
 								})
 								+field-text({
@@ -37,7 +39,32 @@ block content
 										placeholder: 'Контактные данные'
 									}
 								})
-				article.article.article--bg-gray 
-					.article__inner
-						h2.title Навыки
-						
+				article.article-info.article-info--bg-gray 
+					.article-info__inner.article-info__inner--column
+						h2.title.article-info__title Навыки
+						.skils-block
+							- var arr = ["Html5","SASS","VANILLAJS","GIT","css3","LESS","ANGULAR","fOUNDATION","БЭМ","Gulp", "JQUERY","BOOTSTRAP",];
+							- var i = 0;	
+								while i < 12
+									- i++;
+										+field-checkbox([
+											{
+												title: `${arr[i - 1]}`,
+												attrs: {
+												name: `check${i}`,
+												}
+											},
+										])
+				article.article-info.article-info--bg-gray
+					.article-info__inner.article-info--items-center
+						.scale-block
+							svg.meter
+								circle.meter__left(r="96" cx="135" cy="142")
+								circle.meter__center(r="96" cx="136" cy="142")
+								circle.meter__right(r="96" cx="138" cy="142")
+								polygon.meter__clock(points="128,144 144,95 148,143")
+								circle.meter__circle(r="10.3" cx="137" cy="145")
+						div.article-info__big-number--wrapper
+							h2.title.article-info__title Мой уровень владения <br> Java Script
+							.big-number 0
+

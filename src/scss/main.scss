@@ -8,22 +8,97 @@
 @import "vendor";
 @import "base";
 @import "helpers";
+
 * {
 	box-sizing: border-box;
 }
+
+/*------------ Big number -----------*/
+.margin-auto {
+	margin: auto;
+}
+
 body {
 	font-family: $font-family-roboto, 'sans-serif';
 }
+
+.scale-block {	
+	margin-top: 10px;
+}
+
+#scale-arrow {
+	position: relative;
+	transform-origin: center bottom 0;
+}
+/*------------ animation -----------*/
+.meter {
+	display: block;
+	width: 273px;
+	height: 155px;
+	margin: 0 auto;
+	&__left {
+		transform: skewX(-2deg) skewY(1deg);
+		stroke-width: 58;
+		stroke-dashoffset: 253;
+		stroke-dasharray: 120 400;
+		stroke: #ffc815;
+		fill: none;
+	}
+	&__center {
+		stroke-width: 56;
+		stroke-dashoffset: 128;
+		stroke-dasharray: 120 400;
+		stroke: #a3cd3b;
+		fill: none;
+	}
+	&__right {
+		transform: skewX(2deg) skewY(1deg);
+		stroke-width: 58;
+		stroke-dashoffset: 5;
+		stroke-dasharray: 120 400;
+		stroke: #0093d7;
+		fill: none;
+	}
+	&__clock {
+		transform: rotate(-100deg);
+		transform-origin: 137px 146px;
+		fill: black;
+	}
+	&__circle {
+		fill: black;
+	}
+}
+
+
+
+/*------------ Big number -----------*/
+.big-number {
+	font-size: 50px;
+	color: rgb(0, 147, 215);
+	line-height: 0.44;
+	display: block;
+	margin-top: 30px;
+	font-weight: 900;
+
+	&__wrapper {
+		position: relative;
+		margin: auto;
+	}
+}
+
 /*------------ field-text -----------*/
 .field-text {
 	&:not(:first-child) {
-		margin-top: 34px;
+		margin-top: 30px;
 	}
+	
 	&__input-wrap {
 		display: block;
 		max-width: 100%;
 		border-bottom: 2px solid rgb(51, 51, 51);
+		padding-bottom: 4px;
 	}
+
 	&__input {
 		font-weight: 500;
 		width: 100%;
@@ -31,18 +106,20 @@ body {
 		font-size: 12px;
 		color: rgb(102, 102, 102);
 		text-transform: uppercase;
-		line-height: 1;
+		line-height: 1.834;
 		text-align: left;
 		border: none;
 		letter-spacing: 1.4px;
 		background-color: transparent;
+
 		&:focus {
 			outline: none;
 			border: none
 		}
 	}
-	
+
 }
+
 /*------------ Avatar -----------*/
 .avatar {
 	width: 140px;
@@ -55,52 +132,86 @@ body {
 
 }
 
-
 /*------------ Title -----------*/
 h2 {
 	font-size: 18px;
 	color: rgb(1, 1, 1);
 	line-height: 1.223;
 	text-align: left;
+
+	&.title {
+		&_mt0 {
+			margin-top: 0;
+		}
+	}
 }
+
 /*------------ User-info -----------*/
 .user-info {
 	display: flex;
 	flex-direction: column;
 }
+
 /*------------ Article -------------*/
-.article {
+.article-info {
+	$block: &;
 	position: relative;
-	display: block;	
+	display: block;
 	margin-bottom: 2px;
-	&--bg-gray {
-		background-size: cover;
-		background-position: top center;
-		background-repeat: no-repeat;
-		background-image: url(../images/bg-article.png);
+	&:nth-child(2) {
+		#{$block}__inner {
+			padding-bottom: 36px;
+		}
+	}
+	&:nth-child(3) {
+		#{$block}__inner {
+			padding-bottom: 55px;
+		}
 	}
 	&__inner {
 		display: flex;
 		flex-wrap: wrap;
-		padding: 30px 20px 30px;
+		padding: 26px 20px 30px;
 		pointer-events: all;
+
 		@media screen and (max-width: 480px) {
 			flex-direction: column;
 			justify-content: center;
 		}
+
+		&--column {
+			flex-direction: column;
+		}
 	}
-	&__left {
+
+	&__avatar-wrapper {
 		flex: 1 1 0;
 		max-width: 140px;
 		margin-right: 20px;
+
+		>.avatar {
+			margin-top: 5px;
+		}
 	}
-	&__right {
+
+	&__form-wrapper {
 		@media screen and (max-width: 480px) {
 			margin-top: 40px;
 		}
+
 		flex: 2 1 0;
 	}
-	&_after-img {
+
+	&__title {
+		margin: 7px 0 0;
+	}
+	&__big-number {
+		&--wrapper {
+			transform: translateX(-25px);
+			margin: auto;
+		}
+	}
+	&--after-img {
 		&:after {
 			content: "";
 			background: url(../images/shtamp.png) no-repeat 100% 100%;
@@ -113,21 +224,180 @@ h2 {
 			z-index: 0;
 		}
 	}
+
+	&--bg-gray {
+		background-size: cover;
+		background-position: top center;
+		background-repeat: no-repeat;
+		background-image: url(../images/bg-article.png);
+	}
+
+	&--items-center {
+		align-items: center;
+	}
 }
 
 /*------------ section -------------*/
-.section{
+.section {
 
 	position: relative;
+
 	&--gray {
 		background-color: #f0f0f0;
 		padding: 60px 0 95px;
 	}
+
 	&__inner {
 		position: relative;
 		margin: 0 auto;
 		padding: 0 15px;
 		width: 100%;
 		max-width: 690px;
+	}
+}
+
+/*------------ skils-block -------------*/
+.skils-block {
+	margin-top: 18px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+
+	.field-checkbox {
+		width: 135px;
+		text-transform: uppercase;
+
+		&:nth-last-child(-n+4) {
+			@media screen and(min-width: 480px) {
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+
+/*------------ skils-block -------------*/
+.field-checkbox {
+	$block-name: &; // #{$block-name}__element
+	display: block;
+	margin-bottom: 35px;
+
+	&__title {
+		// @include field-name;
+	}
+
+	&__input-wrap {
+
+		&+& {
+			margin-top: 10px;
+		}
+
+		&--error {
+
+			#{$block-name}__name-text,
+			#{$block-name}__help-text {
+				color: red;
+			}
+		}
+	}
+
+	&__name {
+		display: inline-block;
+		position: relative;
+		padding-left: 1.5em;
+		margin-right: 0.6em;
+		font-weight: 400;
+		line-height: 1.5;
+	}
+
+	&__name-text {
+		display: inline-block;
+		font-size: 12px;
+		color: rgb(102, 102, 102);
+		text-transform: uppercase;
+		line-height: 1.834;
+		text-align: left;
+		letter-spacing: 1.4px;
+
+		@at-root input:disabled~& {
+			cursor: not-allowed;
+		}
+
+		&:before {
+			content: '';
+			position: absolute;
+			top: 2px;
+			left: -3px;
+			border-radius: 5px;
+			background-color: rgb(238, 238, 238);
+			width: 19px;
+			height: 19px;
+		}
+
+		@at-root input:checked~&:before {
+			opacity: 1;
+			background-color: rgb(0, 147, 215);
+
+		}
+
+		@at-root input:focus~&:before {
+			// @include field-focus;
+		}
+
+		@at-root input:disabled~&:before {
+			border-color: gray;
+			background: lightgray;
+		}
+
+		&:after {
+			content: '';
+			position: absolute;
+			top: 7px;
+			left: 1px;
+			width: 11px;
+			height: 6px;
+			opacity: 0;
+			;
+			opacity: 0;
+			border-left: 2px solid white;
+			border-bottom: 2px solid white;
+			transform: rotate(-45deg);
+			transition: opacity .3s;
+			// box-shadow: 1px 2px 0 #fff, inset 0 -2px 0 #fff;
+
+			@at-root input:checked~& {
+				opacity: 1;
+			}
+
+			@at-root input:checked:disabled~& {
+				border-color: lightgray;
+			}
+		}
+
+		// / свой чекбокс без картинок
+	}
+
+	&__input {
+		position: absolute;
+		top: 0.7em;
+		left: 0;
+		margin: 0;
+		padding: 0;
+		transform: translateY(-50%);
+
+		&:focus,
+		&:active {
+			// @include field-focus;
+		}
+
+		// сокрытие инпута в случае использования своего чекбокса
+		opacity: 0;
+	}
+
+	&__help-text-wrap {
+		padding-left: 1.5em;
+	}
+
+	&__help-text {
+		// @include field-help-text;
 	}
 }
